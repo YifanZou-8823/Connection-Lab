@@ -1,0 +1,29 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+
+h2 {
+   color:white;
+   font-size : 20px;
+}
+
+h3 {
+    color:white;
+    font-size : 25px;
+}
+
+h4 {
+    color:white;
+}
+
+a {
+    background-color: thistle;
+}
+p {
+    color: white;
+}
+
+body {
+    background-color: black;
+}
