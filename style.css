@@ -1,0 +1,62 @@
+body {
+    padding: 50px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://media.timeout.com/images/106150176/1920/1440/image.webp');
+    background-size: cover;
+}
+.S1_description{
+ background-color: #f5f5f577;
+    border-radius: 15px;
+}
+.S1 {
+    width: 100%;
+    margin: 20px 0; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.project_heading {
+    font-size: 65px;
+}
+
+.project_description {
+    width: 49%;
+    display: inline-block;
+    margin: 0;
+    font-weight:500;
+}
+
+.project_video {
+    width: 50%;
+    min-width: 400px;
+}
+
+.project_image {
+    width: 450px;
+}
+
+@keyframes moveBackAndForth {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(100px); } /* move 100px to the right */
+  100% { transform: translateX(0); }
+}
+
+.moving_shoe {
+  display: inline-block;
+  animation: moveBackAndForth 3s infinite ease-in-out;
+}
+
+.project_heading {
+    color: white;
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+}
+
+@media (max-width: 650px){
+    .project_image{
+        width: 360px;
+        margin-top: 15px;
+    }
+}
