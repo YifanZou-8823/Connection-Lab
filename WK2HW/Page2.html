@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HW Horror Story 2</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Getting There!!</h1>
+<h2>Click the image below to go to the next page:</h2>
+<img id="nextPageImage" src="page2.jpg" alt="Page 2 Image" style="cursor:pointer;"/>
+<p>The boy is slowly approaching the last a couple of page of the homework.</p>
+
+<script>
+    document.getElementById('nextPageImage').addEventListener('click', function() {
+        window.location.href = 'Page3.html';
+    });
+</script>
+
+</body>
+</html>
