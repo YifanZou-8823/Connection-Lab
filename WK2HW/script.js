@@ -4,6 +4,6 @@ document.getElementById('showImageBtn').addEventListener('click', function() {
 
 document.getElementById('clickableImage').addEventListener('click', function() {
     // Go to Page 2
-    window.location.href = 'page2.html';
+    window.location.href = 'Page2.html';
 });
 
