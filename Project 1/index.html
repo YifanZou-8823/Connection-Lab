@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodFlix - Movie Recommendations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="main-header">
+            <h1>MOODYIFAN</h1>
+            <p class="subtitle">Tell us how you feel, and we'll find the perfect movie for you.</p>
+        </header>
+
+        <form id="mood-form" class="mood-form">
+            <input type="text" id="mood-input" placeholder="How are you feeling today?" autocomplete="off">
+            <button type="submit">Find Movies</button>
+        </form>
+
+        <!-- This is where the movie suggestions will be displayed -->
+        <div id="movie-suggestions" class="movie-grid">
+            <!-- Movie cards will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Message for when no movies are found -->
+        <div id="no-results" class="no-results-message" style="display: none;">
+            <p>Sorry, we couldn't find a movie for that mood. Try another word like "happy," "sad," or "bored."</p>
+        </div>
+    </div>
+
+    <main class="p5Sketch" id="canvas-container"></main>
+
+    <footer>Made with ❤️ by Yifan Zou</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
