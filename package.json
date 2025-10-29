@@ -1,14 +1,16 @@
 {
-  "name": "first_server",
+  "name": "wk_7",
   "version": "1.0.0",
-  "description": "this is our first server",
+  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Yifan Zou",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "lowdb": "^6.1.1"
   }
 }

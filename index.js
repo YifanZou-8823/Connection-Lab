@@ -1,100 +1,64 @@
-let express = require('express');
+// let express = require('express');
+
+//DB - 0 - install and load lowdb
+//require vs input
+import express from 'express';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+
 let app = express();
 
-let signs = {
-  "data": [
-    {
-      name: "ford",
-      establishedYear: 1903,
-      ceo: "Jim Farley",
-      country: "USA"
-    },
-    {
-      name: "toyota",
-      establishedYear: 1937,
-      ceo: "Koji Sato",
-      country: "Japan"
-    },
-    {
-      name: "volkswagen",
-      establishedYear: 1937,
-      ceo: "Oliver Blume",
-      country: "Germany"
-    },
-    {
-      name: "mercedes_benz",
-      establishedYear: 1926,
-      ceo: "Ola Källenius",
-      country: "Germany"
-    },
-    {
-      name: "BMW",
-      establishedYear: 1916,
-      ceo: "Oliver Zipse",
-      country: "Germany"
-    },
-    {
-      name: "honda",
-      establishedYear: 1948,
-      ceo: "Toshihiro Mibe",
-      country: "Japan"
-    },
-    {
-      name: "hyundai",
-      establishedYear: 1967,
-      ceo: "Jose Muñoz",
-      country: "South Korea"
-    },
-    {
-      name: "tesla",
-      establishedYear: 2003,
-      ceo: "Elon Musk",
-      country: "USA"
-    },
-    {
-      name: "general_motors",
-      establishedYear: 1908,
-      ceo: "Mary Barra",
-      country: "USA"
-    },
-    {
-      name: "stellantis",
-      establishedYear: 2021,
-      ceo: "Antonio Filosa",
-      country: "Netherlands"
+
+//DB - 1 - connect to the DB
+
+const defaultData = { moodTrackerData:[] };
+const adapter = new JSONFile('db.json');
+const db = new Low(adapter, defaultData);
+
+//parser json
+app.use(express.json());
+
+let moodTracker = [];
+
+// app.get('/', function (request, response) {
+//   response.send('This is the main page');
+// });
+
+//2. add a route on server, that is listening for a post request
+
+app.post('/moodTypes',(request,response)=>{
+    console.log(request.body);
+    let currentDate = Date();
+    let obj = {
+        date: currentDate,
+        mood: request.body.mood
     }
-  ]
-}
-app.get('/', (request, response) => {
-    response.send("HomePage");
+    // coffeeTracker.push(obj);
+    // console.log(coffeeTracker);
+
+    //DB - 2 - add value to the DB
+    db.data.moodTrackerData.push(obj);
+    db.write()
+    .then(()=>{
+        response.json({task:"success"});
+    })
 })
 
-app.get('/about', (request, response) => {
-    response.send("this is the about page");
-})
+app.use('/', express.static('public'));
 
-app.get('/signs', (request, response) => {
-    response.json(signs);
-})
+app.listen(8000, () => {
+    console.log('Listening at localhost:8000');
+});
 
-app.get('/signs/:sign', (request, response) => {
-    console.log(request.params.sign);
-    let user_sign = request.params.sign;
-    let user_obj;
-    for (let i = 0; i < signs.data.length; i++) {
-        if (user_sign == signs.data[i].name) {
-            user_obj = signs.data[i];
-        }
-    }
-    console.log(user_obj);
-    if(user_obj){
-        response.json(user_obj);
-    } else {
-        response.json({status:"info not present"});
-    }
-})
+//add route to get all mood track info
+app.get('/getMood',(request,response)=>{
+    // let obj = {data: moodTracker};
 
-app.listen(3000, () => {
-    console.log("Listening at localhost:3000");
-})
+    //DB - 3 - fetch from the DB
 
+    db.read()
+        .then(()=>{
+            let obj = {data: db.data.moodTrackerData}
+            response.json(obj)
+        })
+})
